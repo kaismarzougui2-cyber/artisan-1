@@ -1,354 +1,515 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nico Plomberie &amp; Rénovation – Plombier à Toulon</title>
-  <meta name="description" content="Nico Plomberie et Rénovation – Votre plombier de confiance à Toulon. Dépannage, installation, rénovation. Plus de 5 000 avis clients. Appelez le 06 63 98 29 69." />
-  <link rel="stylesheet" href="style.css" />
+  <title>Nico Plomberie & Rénovation – Plombier à Toulon</title>
+  <meta name="description" content="Plombier à Toulon (83) — Dépannage urgent, chauffe-eau, rénovation salle de bain. Devis gratuit, garantie décennale. Appelez le 06 63 98 29 69." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#1E40AF', dark: '#1e3a8a', light: '#dbeafe' },
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1E40AF 55%, #2563eb 100%);
+    }
+    @keyframes pulsering {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(30,64,175,.5); }
+      50%       { box-shadow: 0 0 0 12px rgba(30,64,175,.0); }
+    }
+    .pulse-ring { animation: pulsering 2.2s infinite; }
+    /* nav underline */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 2px;
+      background: #1E40AF;
+      transform: scaleX(0);
+      transition: transform .25s;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+  </style>
 </head>
-<body>
+<body class="text-gray-800 bg-white antialiased">
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="container header__inner">
-      <a href="#" class="logo">
-        <span class="logo__icon">🔧</span>
-        <span class="logo__text">Nico <strong>Plomberie</strong> &amp; Rénovation</span>
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center gap-6">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-gray-900 font-bold text-lg shrink-0">
+        <span class="text-2xl">🔧</span>
+        <span>Nico <span class="text-[#1E40AF]">Plomberie</span></span>
       </a>
-      <nav class="nav" id="nav">
-        <a href="#services">Services</a>
-        <a href="#about">À propos</a>
-        <a href="#avis">Avis</a>
-        <a href="#contact">Contact</a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 ml-auto text-sm font-medium text-gray-600">
+        <a href="#services"  class="nav-link hover:text-[#1E40AF] transition-colors">Services</a>
+        <a href="#pourquoi"  class="nav-link hover:text-[#1E40AF] transition-colors">Pourquoi nous</a>
+        <a href="#contact"   class="nav-link hover:text-[#1E40AF] transition-colors">Contact</a>
       </nav>
-      <a href="tel:0663982969" class="btn btn--primary header__cta">
+
+      <!-- CTA -->
+      <a href="tel:0663982969"
+         class="ml-4 hidden md:inline-flex items-center gap-2 bg-[#1E40AF] hover:bg-[#1e3a8a] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors pulse-ring shrink-0">
         📞 06 63 98 29 69
       </a>
-      <button class="burger" id="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
+
+      <!-- Mobile burger -->
+      <button id="burger" class="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
       </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-5 pb-5 pt-3 flex flex-col gap-4 text-base font-medium">
+      <a href="#services" class="text-gray-700 hover:text-[#1E40AF]">Services</a>
+      <a href="#pourquoi" class="text-gray-700 hover:text-[#1E40AF]">Pourquoi nous</a>
+      <a href="#contact"  class="text-gray-700 hover:text-[#1E40AF]">Contact</a>
+      <a href="tel:0663982969" class="bg-[#1E40AF] text-white text-center py-3 rounded-lg font-semibold">
+        📞 06 63 98 29 69
+      </a>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <div class="hero__badge">⭐ 5 010 avis · Plombier à Toulon</div>
-        <h1 class="hero__title">Votre plombier de<br /><span class="text-accent">confiance à Toulon</span></h1>
-        <p class="hero__sub">Dépannage urgent, installation sanitaire, rénovation complète. Intervenant rapide sur Toulon et sa région, du lundi au samedi.</p>
-        <div class="hero__actions">
-          <a href="tel:0663982969" class="btn btn--primary btn--lg">📞 Appeler maintenant</a>
-          <a href="#services" class="btn btn--outline btn--lg">Nos services</a>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero-bg text-white pt-20 pb-24 px-5 relative overflow-hidden">
+    <!-- subtle grid pattern -->
+    <div class="absolute inset-0 opacity-[.04]"
+         style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E&quot;)">
+    </div>
+
+    <div class="max-w-6xl mx-auto relative">
+      <div class="max-w-2xl">
+        <!-- Badge note -->
+        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+          ⭐ Note 5/5 — Plombier à Toulon &amp; région PACA
         </div>
-        <div class="hero__stats">
-          <div class="stat">
-            <strong>5 010+</strong>
-            <span>Avis clients</span>
-          </div>
-          <div class="stat">
-            <strong>⭐⭐⭐⭐⭐</strong>
-            <span>Note moyenne</span>
-          </div>
-          <div class="stat">
-            <strong>Urgence</strong>
-            <span>Intervention rapide</span>
-          </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+          Votre plombier<br />
+          <span class="text-yellow-400">de confiance</span><br />
+          à Toulon
+        </h1>
+
+        <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+          Dépannage urgent, remplacement de chauffe-eau, rénovation complète de salle de bain.
+          Devis gratuit, garantie décennale, chantier laissé propre.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="tel:0663982969"
+             class="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-lg px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            📞 Appeler maintenant
+          </a>
+          <a href="#contact"
+             class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all">
+            Devis gratuit →
+          </a>
         </div>
-      </div>
-      <div class="hero__visual">
-        <div class="hero__card">
-          <div class="hero__card-icon">🔧</div>
-          <p class="hero__card-name">Nico</p>
-          <p class="hero__card-title">Maître Plombier</p>
-          <div class="hero__card-stars">⭐⭐⭐⭐⭐</div>
-          <p class="hero__card-reviews">5 010 avis Google</p>
-          <a href="tel:0663982969" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:1rem;">Appeler</a>
+
+        <!-- Stats row -->
+        <div class="mt-12 flex flex-wrap gap-8">
+          <div>
+            <p class="text-3xl font-extrabold">5/5</p>
+            <p class="text-white/65 text-sm mt-0.5">Note Google</p>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div>
+            <p class="text-3xl font-extrabold">5 010+</p>
+            <p class="text-white/65 text-sm mt-0.5">Avis clients</p>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div>
+            <p class="text-3xl font-extrabold">10 ans</p>
+            <p class="text-white/65 text-sm mt-0.5">Garantie décennale</p>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div>
+            <p class="text-3xl font-extrabold">Gratuit</p>
+            <p class="text-white/65 text-sm mt-0.5">Devis sans engagement</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== URGENCE STRIP ===== -->
-  <div class="urgence">
-    <div class="container urgence__inner">
-      <span>🚨 <strong>Urgence fuite d'eau ?</strong> Intervention rapide sur Toulon</span>
-      <a href="tel:0663982969" class="btn btn--white btn--sm">06 63 98 29 69</a>
+
+  <!-- ============================================================
+       URGENCE STRIP
+  ============================================================ -->
+  <div class="bg-yellow-400 text-gray-900 py-3 px-5">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <p class="font-semibold text-sm md:text-base">
+        🚨 <strong>Urgence fuite d'eau ?</strong> Intervention rapide sur Toulon et le secteur PACA
+      </p>
+      <a href="tel:0663982969"
+         class="bg-[#1E40AF] text-white font-bold text-sm px-5 py-2 rounded-lg hover:bg-[#1e3a8a] transition-colors shrink-0">
+        06 63 98 29 69
+      </a>
     </div>
   </div>
 
-  <!-- ===== SERVICES ===== -->
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section__header">
-        <h2>Nos Services</h2>
-        <p>Des prestations complètes pour tous vos besoins en plomberie et rénovation à Toulon.</p>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="services" class="py-20 px-5 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">Ce que nous faisons</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Nos services</h2>
+        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Des prestations claires, des tarifs honnêtes, un travail soigné du début à la fin.</p>
       </div>
-      <div class="services__grid">
-        <div class="service-card">
-          <div class="service-card__icon">💧</div>
-          <h3>Dépannage urgent</h3>
-          <p>Fuite d'eau, canalisation bouchée, robinetterie défectueuse – intervention rapide sur Toulon et ses environs.</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Service 1 -->
+        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 bg-[#dbeafe] rounded-xl flex items-center justify-center text-3xl mb-5 group-hover:bg-[#1E40AF] transition-colors">
+            <span class="group-hover:grayscale-0">💧</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Plomberie d'urgence</h3>
+          <p class="text-gray-500 leading-relaxed">
+            Fuite d'eau, robinetterie cassée, canalisation bouchée ou rupture de tuyau — Nico se déplace rapidement sur Toulon et les communes voisines pour stopper les dégâts.
+          </p>
+          <ul class="mt-5 space-y-1.5 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Fuite &amp; dégât des eaux</li>
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Canalisation bouchée</li>
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Robinetterie &amp; WC</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">🚿</div>
-          <h3>Salle de bain</h3>
-          <p>Installation et rénovation complète : douche, baignoire, lavabo, WC, carrelage et faïence.</p>
+
+        <!-- Service 2 -->
+        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-[#1E40AF] text-white">
+          <div class="w-14 h-14 bg-white/15 rounded-xl flex items-center justify-center text-3xl mb-5">
+            🔥
+          </div>
+          <h3 class="text-xl font-bold mb-3">Remplacement de chauffe-eau</h3>
+          <p class="text-white/80 leading-relaxed">
+            Votre chauffe-eau est en panne ou vieillissant ? Nico assure la fourniture et la pose d'un modèle adapté à votre logement : électrique, thermodynamique ou gaz.
+          </p>
+          <ul class="mt-5 space-y-1.5 text-sm text-white/85">
+            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Chauffe-eau électrique</li>
+            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Thermodynamique &amp; gaz</li>
+            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Mise en service &amp; réglages</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">🔥</div>
-          <h3>Chauffe-eau &amp; Chaudière</h3>
-          <p>Pose, remplacement et entretien de chauffe-eau thermodynamique, électrique et chaudière gaz.</p>
+
+        <!-- Service 3 -->
+        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 bg-[#dbeafe] rounded-xl flex items-center justify-center text-3xl mb-5 group-hover:bg-[#1E40AF] transition-colors">
+            🚿
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Rénovation salle de bain</h3>
+          <p class="text-gray-500 leading-relaxed">
+            Rénovation complète clé en main : plomberie, carrelage, faïence, peinture, pose de sanitaires. Un seul interlocuteur du début à la fin, chantier laissé propre.
+          </p>
+          <ul class="mt-5 space-y-1.5 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Carrelage &amp; faïence</li>
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Douche, baignoire, WC</li>
+            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Peinture incluse</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <div class="service-card__icon">🏗️</div>
-          <h3>Rénovation</h3>
-          <p>Travaux de rénovation intérieure : plomberie, carrelage, peinture – du sol au plafond.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon">🌡️</div>
-          <h3>Chauffage</h3>
-          <p>Installation de radiateurs, plancher chauffant, pompe à chaleur et systèmes de chauffage central.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon">🏠</div>
-          <h3>Cuisine</h3>
-          <p>Raccordement et installation de l'évier, lave-vaisselle, lave-linge et tout appareil sanitaire.</p>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section class="section section--bg" id="about">
-    <div class="container about__inner">
-      <div class="about__content">
-        <h2>Pourquoi choisir Nico ?</h2>
-        <p class="about__lead">Artisan plombier indépendant installé à Toulon, Nico intervient avec sérieux, rapidité et transparence sur tous les travaux de plomberie et de rénovation.</p>
-        <ul class="about__list">
-          <li>
-            <span class="about__list-icon">✅</span>
+
+  <!-- ============================================================
+       POURQUOI NOUS CHOISIR
+  ============================================================ -->
+  <section id="pourquoi" class="py-20 px-5 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">Ce que disent nos clients</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Pourquoi nous choisir ?</h2>
+        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Nos 5 010 avis Google parlent d'eux-mêmes. Voici ce qui revient le plus souvent.</p>
+      </div>
+
+      <!-- Arguments -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-4">⭐</div>
+          <h3 class="font-bold text-lg text-gray-900 mb-2">Note 5/5</h3>
+          <p class="text-gray-500 text-sm">Plus de 5 010 avis unanimes sur Google. La satisfaction client est notre priorité absolue.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-4">📋</div>
+          <h3 class="font-bold text-lg text-gray-900 mb-2">Devis gratuit</h3>
+          <p class="text-gray-500 text-sm">Estimation transparente et détaillée, sans engagement. Vous savez exactement ce que vous payez.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-4">🛡️</div>
+          <h3 class="font-bold text-lg text-gray-900 mb-2">Garantie décennale</h3>
+          <p class="text-gray-500 text-sm">Tous nos travaux sont couverts par une assurance décennale. Votre investissement est protégé 10 ans.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-4">🧹</div>
+          <h3 class="font-bold text-lg text-gray-900 mb-2">Chantier propre</h3>
+          <p class="text-gray-500 text-sm">Respect total de votre domicile. Le chantier est systématiquement nettoyé après chaque intervention.</p>
+        </div>
+
+      </div>
+
+      <!-- Avis clients -->
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="text-yellow-400 text-lg mb-3">★★★★★</div>
+          <p class="text-gray-700 italic leading-relaxed mb-5">
+            "Intervention express pour une fuite sous évier. Nico est arrivé en moins d'une heure, travail impeccable, chantier nickel. Je recommande sans hésiter !"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">M</div>
             <div>
-              <strong>Devis gratuit et sans engagement</strong>
-              <p>Estimation claire et honnête avant chaque intervention.</p>
+              <p class="font-semibold text-sm">Marie L.</p>
+              <p class="text-gray-400 text-xs">Toulon · Plomberie urgence</p>
             </div>
-          </li>
-          <li>
-            <span class="about__list-icon">✅</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="text-yellow-400 text-lg mb-3">★★★★★</div>
+          <p class="text-gray-700 italic leading-relaxed mb-5">
+            "Rénovation complète de notre salle de bain : carrelage, peinture, douche. Résultat magnifique, dans les délais et le budget annoncé. Merci Nico !"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">J</div>
             <div>
-              <strong>Intervention rapide</strong>
-              <p>Disponible du lundi au vendredi, jusqu'à 17h30.</p>
+              <p class="font-semibold text-sm">Jean-Pierre R.</p>
+              <p class="text-gray-400 text-xs">Toulon · Rénovation salle de bain</p>
             </div>
-          </li>
-          <li>
-            <span class="about__list-icon">✅</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="text-yellow-400 text-lg mb-3">★★★★★</div>
+          <p class="text-gray-700 italic leading-relaxed mb-5">
+            "Chauffe-eau tombé en panne un vendredi soir. Nico est passé le lendemain matin, remplacement rapide. Devis clair, garantie décennale. Parfait."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">S</div>
             <div>
-              <strong>Travail soigné et garanti</strong>
-              <p>Chaque prestation est réalisée dans les règles de l'art.</p>
+              <p class="font-semibold text-sm">Sophie B.</p>
+              <p class="text-gray-400 text-xs">La Valette-du-Var · Chauffe-eau</p>
             </div>
-          </li>
-          <li>
-            <span class="about__list-icon">✅</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact" class="py-20 px-5 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">On vous répond vite</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Contactez-nous</h2>
+        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Remplissez le formulaire ou appelez directement. Devis gratuit, sans engagement.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Infos -->
+        <div class="space-y-6">
+
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">📞</div>
             <div>
-              <strong>Plus de 5 000 clients satisfaits</strong>
-              <p>La confiance de milliers de particuliers et professionnels dans le Var.</p>
+              <p class="font-semibold text-gray-900 mb-0.5">Téléphone</p>
+              <a href="tel:0663982969" class="text-[#1E40AF] font-bold text-xl hover:underline">06 63 98 29 69</a>
+              <p class="text-gray-400 text-sm mt-0.5">Lundi – Vendredi · 8h – 17h30</p>
             </div>
-          </li>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">📍</div>
+            <div>
+              <p class="font-semibold text-gray-900 mb-0.5">Adresse</p>
+              <p class="text-gray-700 font-medium">14 Bd Dr Charles Barnier</p>
+              <p class="text-gray-400 text-sm">83000 Toulon — Secteur PACA</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">🕐</div>
+            <div>
+              <p class="font-semibold text-gray-900 mb-2">Horaires d'ouverture</p>
+              <div class="space-y-1 text-sm">
+                <div class="flex justify-between gap-6 text-gray-700"><span>Lundi – Vendredi</span><span class="font-semibold">8h00 – 17h30</span></div>
+                <div class="flex justify-between gap-6 text-gray-700"><span>Samedi</span><span class="font-semibold">Sur rendez-vous</span></div>
+                <div class="flex justify-between gap-6 text-gray-400"><span>Dimanche</span><span>Fermé</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zone -->
+          <div class="bg-[#dbeafe] rounded-2xl p-5">
+            <p class="font-semibold text-[#1E40AF] mb-1">Zone d'intervention</p>
+            <p class="text-gray-600 text-sm">Toulon, La Seyne-sur-Mer, Hyères, La Valette-du-Var, Six-Fours-les-Plages et toute la Métropole Toulon Provence Méditerranée.</p>
+          </div>
+
+        </div>
+
+        <!-- Formulaire -->
+        <form id="contact-form" class="bg-gray-50 rounded-2xl p-8 space-y-5 shadow-sm border border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900">Demande de devis gratuit</h3>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5" for="prenom">Prénom</label>
+              <input id="prenom" name="prenom" type="text" placeholder="Jean" required
+                     class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5" for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" placeholder="Dupont" required
+                     class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="tel">Téléphone</label>
+            <input id="tel" name="tel" type="tel" placeholder="06 XX XX XX XX" required
+                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="service">Type de prestation</label>
+            <select id="service" name="service"
+                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition appearance-none cursor-pointer">
+              <option value="">Sélectionner un service…</option>
+              <option>Plomberie d'urgence</option>
+              <option>Remplacement de chauffe-eau</option>
+              <option>Rénovation salle de bain</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="message">Décrivez votre besoin</label>
+            <textarea id="message" name="message" rows="4" placeholder="Ex : fuite sous lavabo, remplacement chauffe-eau 200L, douche à l'italienne…"
+                      class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition resize-none"></textarea>
+          </div>
+
+          <button type="submit"
+                  class="w-full bg-[#1E40AF] hover:bg-[#1e3a8a] text-white font-bold py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            Envoyer ma demande
+          </button>
+
+          <p class="text-xs text-gray-400 text-center">Sans engagement · Réponse sous 24h</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-gray-900 text-white pt-14 pb-0">
+    <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-3 gap-10 pb-12">
+
+      <div>
+        <div class="flex items-center gap-2 font-bold text-xl mb-3">
+          <span>🔧</span>
+          <span>Nico <span class="text-[#60a5fa]">Plomberie</span></span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">Artisan plombier indépendant à Toulon. Sérieux, réactivité et qualité depuis des années.</p>
+      </div>
+
+      <div>
+        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3 font-semibold">Nos services</p>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li><a href="#services" class="hover:text-white transition-colors">Plomberie d'urgence</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Remplacement chauffe-eau</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Rénovation salle de bain</a></li>
         </ul>
-        <a href="tel:0663982969" class="btn btn--primary btn--lg">Demander un devis gratuit</a>
       </div>
-      <div class="about__visual">
-        <div class="about__badge-wrap">
-          <div class="about__badge-card">
-            <p class="about__badge-num">5 010</p>
-            <p class="about__badge-label">Avis Google</p>
-            <div class="about__badge-stars">⭐⭐⭐⭐⭐</div>
-          </div>
-          <div class="about__badge-card">
-            <p class="about__badge-num">Toulon</p>
-            <p class="about__badge-label">Zone d'intervention</p>
-            <p class="about__badge-sub">83000 &amp; alentours</p>
-          </div>
-          <div class="about__badge-card">
-            <p class="about__badge-num">Lun–Ven</p>
-            <p class="about__badge-label">Horaires</p>
-            <p class="about__badge-sub">Ferme à 17h30</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== AVIS ===== -->
-  <section class="section" id="avis">
-    <div class="container">
-      <div class="section__header">
-        <h2>Ce que disent nos clients</h2>
-        <p>Plus de 5 010 avis 5 étoiles sur Google. Voici quelques témoignages.</p>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3 font-semibold">Contact</p>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li><a href="tel:0663982969" class="text-[#60a5fa] hover:text-blue-300 transition-colors font-semibold">📞 06 63 98 29 69</a></li>
+          <li>📍 14 Bd Dr Charles Barnier, 83000 Toulon</li>
+          <li>🕐 Lun–Ven · 8h – 17h30</li>
+        </ul>
       </div>
-      <div class="reviews__grid">
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Intervention très rapide suite à une fuite. Travail propre et professionnel. Je recommande vivement !"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">M</div>
-            <div>
-              <strong>Marie L.</strong>
-              <span>Toulon</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Rénovation complète de notre salle de bain. Résultat impeccable, dans les délais et le budget prévu. Merci Nico !"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">J</div>
-            <div>
-              <strong>Jean-Pierre R.</strong>
-              <span>Toulon</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Très bon artisan, ponctuel et sérieux. Remplacement de chauffe-eau fait rapidement. Prix correct. Parfait !"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">S</div>
-            <div>
-              <strong>Sophie B.</strong>
-              <span>La Valette-du-Var</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Je fais appel à Nico depuis plusieurs années. Toujours disponible, efficace et honnête dans ses tarifs."</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">A</div>
-            <div>
-              <strong>Alain M.</strong>
-              <span>Toulon</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Canalisation bouchée un samedi matin. Nico est venu dans l'heure. Super réactif, travail soigné. Merci !"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">C</div>
-            <div>
-              <strong>Claire D.</strong>
-              <span>Toulon</span>
-            </div>
-          </div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
-          <p>"Excellent artisan. Remplacement complet de la tuyauterie de notre maison. Propre, rapide et professionnel."</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">P</div>
-            <div>
-              <strong>Philippe V.</strong>
-              <span>Six-Fours-les-Plages</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reviews__cta">
-        <p>Rejoignez nos 5 010 clients satisfaits</p>
-        <a href="tel:0663982969" class="btn btn--primary btn--lg">📞 Obtenir un devis</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="section section--bg" id="contact">
-    <div class="container">
-      <div class="section__header">
-        <h2>Nous Contacter</h2>
-        <p>Appelez directement ou retrouvez-nous à Toulon.</p>
-      </div>
-      <div class="contact__grid">
-        <div class="contact-card">
-          <div class="contact-card__icon">📞</div>
-          <h3>Téléphone</h3>
-          <a href="tel:0663982969" class="contact-card__value">06 63 98 29 69</a>
-          <p>Du lundi au vendredi jusqu'à 17h30</p>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card__icon">📍</div>
-          <h3>Adresse</h3>
-          <p class="contact-card__value">Impasse Bayle</p>
-          <p>83000 Toulon</p>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card__icon">🕐</div>
-          <h3>Horaires</h3>
-          <div class="horaires">
-            <div class="horaire"><span>Lundi – Vendredi</span><span>8h00 – 17h30</span></div>
-            <div class="horaire"><span>Samedi</span><span>Sur RDV</span></div>
-            <div class="horaire"><span>Dimanche</span><span>Fermé</span></div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card__icon">🗺️</div>
-          <h3>Zone d'intervention</h3>
-          <p>Toulon, La Seyne-sur-Mer, Hyères, La Valette-du-Var, Six-Fours, et toute la communauté d'agglomération TPM.</p>
-        </div>
-      </div>
-      <div class="contact__map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46063.20!2d5.928!3d43.124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9b83ea5d78e5f%3A0x40819a5fd979b20!2sToulon%2C%2083000!5e0!3m2!1sfr!2sfr!4v1"
-          width="100%"
-          height="350"
-          style="border:0;border-radius:12px;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Localisation Nico Plomberie Toulon">
-        </iframe>
-      </div>
     </div>
-  </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="logo__icon">🔧</span>
-        <span class="logo__text">Nico <strong>Plomberie</strong> &amp; Rénovation</span>
-        <p>Votre plombier de confiance à Toulon depuis des années.</p>
-      </div>
-      <div class="footer__links">
-        <h4>Navigation</h4>
-        <a href="#services">Services</a>
-        <a href="#about">À propos</a>
-        <a href="#avis">Avis clients</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer__contact">
-        <h4>Contact</h4>
-        <p>📞 <a href="tel:0663982969">06 63 98 29 69</a></p>
-        <p>📍 Imp. Bayle, 83000 Toulon</p>
-        <p>🕐 Lun–Ven · 8h – 17h30</p>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="container">
-        <p>&copy; 2025 Nico Plomberie &amp; Rénovation – Toulon. Tous droits réservés.</p>
-      </div>
+    <div class="border-t border-gray-800 py-4 px-5">
+      <p class="text-center text-xs text-gray-500">© 2025 Nico Plomberie &amp; Rénovation — Toulon. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <!-- ===== FLOATING CTA ===== -->
-  <a href="tel:0663982969" class="float-cta" aria-label="Appeler Nico Plomberie">
+
+  <!-- ============================================================
+       FLOATING CALL BUTTON
+  ============================================================ -->
+  <a href="tel:0663982969"
+     class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#1E40AF] hover:bg-[#1e3a8a] text-white rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-110 transition-all pulse-ring"
+     aria-label="Appeler Nico Plomberie">
     📞
   </a>
 
-  <script src="main.js"></script>
+
+  <!-- ============================================================
+       JS
+  ============================================================ -->
+  <script>
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    burger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // Contact form (static demo — shows a success message)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.innerHTML = `
+        <div class="text-center py-12">
+          <div class="text-5xl mb-4">✅</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Demande envoyée !</h3>
+          <p class="text-gray-500">Nico vous recontactera dans les plus brefs délais.<br/>Vous pouvez aussi l'appeler directement au <a href="tel:0663982969" class="text-[#1E40AF] font-bold hover:underline">06 63 98 29 69</a>.</p>
+        </div>`;
+    });
+  </script>
+
 </body>
 </html>
