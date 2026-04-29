@@ -1,592 +1,590 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maxime DUMAS Plomberie & Rénovation – Plombier à Toulon</title>
-  <meta name="description" content="Plombier à Toulon (83) — Dépannage urgent, chauffe-eau, rénovation salle de bain. Devis gratuit, garantie décennale. Appelez le 07 72 63 54 11." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#1E40AF', dark: '#1e3a8a', light: '#dbeafe' },
-          },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Diop Christophe — Artisan Électricien</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
-    html { font-family: 'Inter', system-ui, sans-serif; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F5C518;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --mid: #1C1C1C;
+      --grey: #888;
+      --light: #F0EDE8;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245,197,24,0.15);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--yellow);
+    }
+    .nav-cta {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 10px 22px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-cta svg { width: 16px; height: 16px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated lightning background */
     .hero-bg {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1E40AF 55%, #2563eb 100%);
+      position: absolute; inset: 0;
+      background: var(--black);
+      overflow: hidden;
     }
-    @keyframes pulsering {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(30,64,175,.5); }
-      50%       { box-shadow: 0 0 0 12px rgba(30,64,175,.0); }
-    }
-    .pulse-ring { animation: pulsering 2.2s infinite; }
-    /* nav underline */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: '';
+    .bolt {
       position: absolute;
-      bottom: -3px; left: 0; right: 0;
-      height: 2px;
-      background: #1E40AF;
-      transform: scaleX(0);
-      transition: transform .25s;
+      top: -10%;
+      width: 2px;
+      height: 120%;
+      background: linear-gradient(to bottom, transparent, var(--yellow), transparent);
+      opacity: 0;
+      animation: bolt-flash 4s infinite;
     }
-    .nav-link:hover::after { transform: scaleX(1); }
+    .bolt:nth-child(1) { left: 20%; animation-delay: 0s; }
+    .bolt:nth-child(2) { left: 55%; width: 1px; animation-delay: 1.3s; opacity: 0; }
+    .bolt:nth-child(3) { left: 80%; animation-delay: 2.7s; }
+    .bolt:nth-child(4) { left: 40%; width: 1px; animation-delay: 3.5s; }
+
+    @keyframes bolt-flash {
+      0%, 90%, 100% { opacity: 0; }
+      92% { opacity: 0.06; }
+      95% { opacity: 0; }
+      97% { opacity: 0.04; }
+    }
+
+    /* Giant diagonal circuit lines */
+    .circuit-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(245,197,24,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,197,24,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-accent {
+      position: absolute;
+      top: 15%;
+      right: -100px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,197,24,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Big electrician icon */
+    .hero-icon {
+      position: absolute;
+      top: 50%; right: 48px;
+      transform: translateY(-50%);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-icon svg { width: 420px; height: 420px; fill: var(--yellow); }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      margin-bottom: 28px;
+      width: fit-content;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 10vw, 140px);
+      line-height: 0.92;
+      letter-spacing: 2px;
+      color: var(--white);
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero-title span { color: var(--yellow); }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 480px;
+      line-height: 1.65;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-tel {
+      margin-top: 40px;
+      display: flex; align-items: center; gap: 20px;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+    .hero-tel a {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: clamp(26px, 4vw, 38px);
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 3px;
+      transition: color 0.2s;
+    }
+    .hero-tel a:hover { color: var(--yellow); }
+    .tel-icon {
+      width: 46px; height: 46px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .tel-icon svg { width: 20px; height: 20px; fill: var(--black); }
+
+    .hero-badge {
+      position: absolute;
+      top: 48px;
+      right: 60px;
+      width: 110px; height: 110px;
+      animation: spin-slow 12s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── STRIP ─── */
+    .strip {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 18px 48px;
+      display: flex; align-items: center; gap: 60px;
+      overflow: hidden;
+    }
+    .strip-items {
+      display: flex; gap: 60px; align-items: center;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+    .strip-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .strip-item svg { width: 16px; height: 16px; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SERVICES ─── */
+    .section { padding: 100px 48px; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--yellow);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--mid);
+      padding: 40px 36px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--yellow);
+      transition: height 0.3s;
+    }
+    .service-card:hover { background: #1F1F1F; border-color: var(--yellow); }
+    .service-card:hover::before { height: 100%; }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px; color: rgba(245,197,24,0.12);
+      line-height: 1; margin-bottom: 20px;
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(245,197,24,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { width: 22px; height: 22px; fill: var(--yellow); }
+    .service-name {
+      font-size: 18px; font-weight: 500;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 14px; color: var(--grey); line-height: 1.65;
+    }
+
+    /* ─── WHY ─── */
+    .why { background: var(--dark); }
+    .why-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .why-visual {
+      position: relative; height: 420px;
+    }
+    .why-big-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      color: rgba(245,197,24,0.08);
+      line-height: 1;
+      position: absolute; bottom: -20px; right: -10px;
+    }
+    .why-card {
+      position: absolute;
+      background: var(--mid);
+      padding: 28px;
+      border-left: 3px solid var(--yellow);
+    }
+    .why-card:nth-child(2) { top: 0; left: 0; width: 240px; }
+    .why-card:nth-child(3) { bottom: 40px; left: 60px; width: 220px; }
+    .why-card-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px; color: var(--yellow); line-height: 1;
+    }
+    .why-card-label { font-size: 13px; color: var(--grey); margin-top: 4px; }
+    .why-list { list-style: none; }
+    .why-list li {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .why-list li:last-child { border: none; }
+    .why-check {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .why-check svg { width: 14px; height: 14px; fill: var(--black); }
+    .why-list-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .why-list-desc { font-size: 13px; color: var(--grey); line-height: 1.6; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--yellow);
+      padding: 80px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .cta-band-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      color: var(--black); line-height: 1;
+    }
+    .cta-band-title span { display: block; }
+    .cta-tel-btn {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      padding: 20px 36px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px; letter-spacing: 2px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .cta-tel-btn:hover { opacity: 0.8; }
+    .cta-tel-btn svg { width: 24px; height: 24px; fill: var(--yellow); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      gap: 20px; flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px; letter-spacing: 4px; color: var(--yellow);
+    }
+    .footer-meta {
+      font-size: 13px; color: var(--grey);
+      text-align: center;
+    }
+    .footer-tel a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px; letter-spacing: 3px;
+      color: var(--white); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-tel a:hover { color: var(--yellow); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 0 24px 64px; }
+      .hero-icon { display: none; }
+      .section { padding: 70px 24px; }
+      .why-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why-visual { display: none; }
+      .cta-band { padding: 60px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
-<body class="text-gray-800 bg-white antialiased">
+<body>
 
-  <!-- ============================================================
-       HEADER
-  ============================================================ -->
-  <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center gap-6">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 text-gray-900 font-bold text-lg shrink-0">
-        <span class="text-2xl">🔧</span>
-        <span>Maxime DUMAS <span class="text-[#1E40AF]">Plomberie</span></span>
-      </a>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DC Électricité</div>
+  <a href="tel:0643954746" class="nav-cta">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    Appeler
+  </a>
+</nav>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-7 ml-auto text-sm font-medium text-gray-600">
-        <a href="#services"  class="nav-link hover:text-[#1E40AF] transition-colors">Services</a>
-        <a href="#pourquoi"  class="nav-link hover:text-[#1E40AF] transition-colors">Pourquoi nous</a>
-        <a href="#avis"      class="nav-link hover:text-[#1E40AF] transition-colors">Avis clients</a>
-        <a href="#contact"   class="nav-link hover:text-[#1E40AF] transition-colors">Contact</a>
-      </nav>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="circuit-bg"></div>
+    <div class="bolt"></div>
+    <div class="bolt"></div>
+    <div class="bolt"></div>
+    <div class="bolt"></div>
+    <div class="hero-accent"></div>
+  </div>
 
-      <!-- CTA -->
-      <a href="tel:0772635411"
-         class="ml-4 hidden md:inline-flex items-center gap-2 bg-[#1E40AF] hover:bg-[#1e3a8a] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors pulse-ring shrink-0">
-        📞 07 72 63 54 11
-      </a>
+  <div class="hero-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 0L0 13h9v11L22 11h-9z"/></svg>
+  </div>
 
-      <!-- Mobile burger -->
-      <button id="burger" class="md:hidden ml-auto p-2 rounded-lg hover:bg-gray-100 transition" aria-label="Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
+  <!-- Badge tournant -->
+  <svg class="hero-badge" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="circle-path" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" fill="none"/>
+    <text font-family="DM Sans, sans-serif" font-size="14" fill="#F5C518" font-weight="500" letter-spacing="5">
+      <textPath href="#circle-path">ARTISAN QUALIFIÉ • DEVIS GRATUIT • ILE-DE-FRANCE • </textPath>
+    </text>
+    <circle cx="100" cy="100" r="60" fill="rgba(245,197,24,0.06)" stroke="rgba(245,197,24,0.2)" stroke-width="1"/>
+    <path d="M 112 88 L 96 100 L 104 100 L 88 112 L 104 100 L 96 100 Z" fill="#F5C518" opacity="0.7"/>
+  </svg>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-5 pb-5 pt-3 flex flex-col gap-4 text-base font-medium">
-      <a href="#services" class="text-gray-700 hover:text-[#1E40AF]">Services</a>
-      <a href="#pourquoi" class="text-gray-700 hover:text-[#1E40AF]">Pourquoi nous</a>
-      <a href="#avis"     class="text-gray-700 hover:text-[#1E40AF]">Avis clients</a>
-      <a href="#contact"  class="text-gray-700 hover:text-[#1E40AF]">Contact</a>
-      <a href="tel:0772635411" class="bg-[#1E40AF] text-white text-center py-3 rounded-lg font-semibold">
-        📞 07 72 63 54 11
-      </a>
-    </div>
-  </header>
-
-
-  <!-- ============================================================
-       HERO
-  ============================================================ -->
-  <section class="hero-bg text-white pt-20 pb-24 px-5 relative overflow-hidden">
-    <!-- subtle grid pattern -->
-    <div class="absolute inset-0 opacity-[.04]"
-         style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E&quot;)">
-    </div>
-
-    <div class="max-w-6xl mx-auto relative">
-      <div class="max-w-2xl">
-        <!-- Badge note -->
-        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-          ⭐ Note 5/5 — Plombier à Toulon &amp; région PACA
+  <div style="position:relative; z-index:2;">
+    <div class="hero-tag">⚡ Artisan Électricien</div>
+    <h1 class="hero-title">Diop<br><span>Christophe</span></h1>
+    <p class="hero-sub">Votre électricien de confiance pour tous vos travaux — installation, rénovation, dépannage. Intervention rapide, travail soigné.</p>
+    <div class="hero-tel">
+      <a href="tel:0643954746">
+        <div class="tel-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         </div>
-
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-          Votre plombier<br />
-          <span class="text-yellow-400">de confiance</span><br />
-          à Toulon
-        </h1>
-
-        <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
-          Dépannage urgent, remplacement de chauffe-eau, rénovation complète de salle de bain.
-          Devis gratuit, garantie décennale, chantier laissé propre.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="tel:0772635411"
-             class="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-lg px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-            📞 Appeler maintenant
-          </a>
-          <a href="#contact"
-             class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all">
-            Devis gratuit →
-          </a>
-        </div>
-
-        <!-- Stats row -->
-        <div class="mt-12 flex flex-wrap gap-8">
-          <div>
-            <p class="text-3xl font-extrabold">5/5</p>
-            <p class="text-white/65 text-sm mt-0.5">Note Google</p>
-          </div>
-          <div class="w-px bg-white/20"></div>
-          <div>
-            <p class="text-3xl font-extrabold">10 ans</p>
-            <p class="text-white/65 text-sm mt-0.5">Garantie décennale</p>
-          </div>
-          <div class="w-px bg-white/20"></div>
-          <div>
-            <p class="text-3xl font-extrabold">Gratuit</p>
-            <p class="text-white/65 text-sm mt-0.5">Devis sans engagement</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       URGENCE STRIP
-  ============================================================ -->
-  <div class="bg-yellow-400 text-gray-900 py-3 px-5">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <p class="font-semibold text-sm md:text-base">
-        🚨 <strong>Urgence fuite d'eau ?</strong> Intervention rapide sur Toulon et le secteur PACA
-      </p>
-      <a href="tel:0772635411"
-         class="bg-[#1E40AF] text-white font-bold text-sm px-5 py-2 rounded-lg hover:bg-[#1e3a8a] transition-colors shrink-0">
-        07 72 63 54 11
+        06 43 95 47 46
       </a>
     </div>
   </div>
+</section>
 
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-items">
+    <!-- Repeated for seamless loop -->
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 0L0 13h9v11L22 11h-9z"/></svg>Dépannage urgent</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Devis gratuit</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Île-de-France</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Travail garanti</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>10+ ans d'expérience</span>
+    <!-- Clone for seamless loop -->
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 0L0 13h9v11L22 11h-9z"/></svg>Dépannage urgent</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Devis gratuit</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Île-de-France</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Travail garanti</span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>10+ ans d'expérience</span>
+  </div>
+</div>
 
-  <!-- ============================================================
-       SERVICES
-  ============================================================ -->
-  <section id="services" class="py-20 px-5 bg-white">
-    <div class="max-w-6xl mx-auto">
+<!-- SERVICES -->
+<section class="section" id="services">
+  <p class="section-label">Nos prestations</p>
+  <h2 class="section-title">Ce que<br>je fais</h2>
+  <div class="services-grid">
 
-      <div class="text-center mb-14">
-        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">Ce que nous faisons</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Nos services</h2>
-        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Des prestations claires, des tarifs honnêtes, un travail soigné du début à la fin.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-
-        <!-- Service 1 -->
-        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-          <div class="w-14 h-14 bg-[#dbeafe] rounded-xl flex items-center justify-center text-3xl mb-5 group-hover:bg-[#1E40AF] transition-colors">
-            <span class="group-hover:grayscale-0">💧</span>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Plomberie d'urgence</h3>
-          <p class="text-gray-500 leading-relaxed">
-            Fuite d'eau, robinetterie cassée, canalisation bouchée ou rupture de tuyau — Maxime DUMAS se déplace rapidement sur Toulon et les communes voisines pour stopper les dégâts.
-          </p>
-          <ul class="mt-5 space-y-1.5 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Fuite &amp; dégât des eaux</li>
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Canalisation bouchée</li>
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Robinetterie &amp; WC</li>
-          </ul>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-[#1E40AF] text-white">
-          <div class="w-14 h-14 bg-white/15 rounded-xl flex items-center justify-center text-3xl mb-5">
-            🔥
-          </div>
-          <h3 class="text-xl font-bold mb-3">Remplacement de chauffe-eau</h3>
-          <p class="text-white/80 leading-relaxed">
-            Votre chauffe-eau est en panne ou vieillissant ? Maxime DUMAS assure la fourniture et la pose d'un modèle adapté à votre logement : électrique, thermodynamique ou gaz.
-          </p>
-          <ul class="mt-5 space-y-1.5 text-sm text-white/85">
-            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Chauffe-eau électrique</li>
-            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Thermodynamique &amp; gaz</li>
-            <li class="flex items-center gap-2"><span class="text-yellow-400 font-bold">✓</span> Mise en service &amp; réglages</li>
-          </ul>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="group border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-          <div class="w-14 h-14 bg-[#dbeafe] rounded-xl flex items-center justify-center text-3xl mb-5 group-hover:bg-[#1E40AF] transition-colors">
-            🚿
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Rénovation salle de bain</h3>
-          <p class="text-gray-500 leading-relaxed">
-            Rénovation complète clé en main : plomberie, carrelage, faïence, peinture, pose de sanitaires. Un seul interlocuteur du début à la fin, chantier laissé propre.
-          </p>
-          <ul class="mt-5 space-y-1.5 text-sm text-gray-600">
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Carrelage &amp; faïence</li>
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Douche, baignoire, WC</li>
-            <li class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> Peinture incluse</li>
-          </ul>
-        </div>
-
-      </div>
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></div>
+      <div class="service-name">Installation électrique</div>
+      <div class="service-desc">Câblage, tableau électrique, prises et interrupteurs. Neuf ou rénovation, je m'adapte à votre projet.</div>
     </div>
-  </section>
 
-
-  <!-- ============================================================
-       POURQUOI NOUS CHOISIR
-  ============================================================ -->
-  <section id="pourquoi" class="py-20 px-5 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-
-      <div class="text-center mb-14">
-        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">Ce que disent nos clients</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Pourquoi nous choisir ?</h2>
-        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Nos clients parlent d'eux-mêmes. Voici ce qui revient le plus souvent.</p>
-      </div>
-
-      <!-- Arguments -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-
-        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">⭐</div>
-          <h3 class="font-bold text-lg text-gray-900 mb-2">Note 5/5</h3>
-          <p class="text-gray-500 text-sm">La satisfaction client est notre priorité absolue, notée 5/5 sur Google.</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">📋</div>
-          <h3 class="font-bold text-lg text-gray-900 mb-2">Devis gratuit</h3>
-          <p class="text-gray-500 text-sm">Estimation transparente et détaillée, sans engagement. Vous savez exactement ce que vous payez.</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">🛡️</div>
-          <h3 class="font-bold text-lg text-gray-900 mb-2">Garantie décennale</h3>
-          <p class="text-gray-500 text-sm">Tous nos travaux sont couverts par une assurance décennale. Votre investissement est protégé 10 ans.</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-7 text-center shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">🧹</div>
-          <h3 class="font-bold text-lg text-gray-900 mb-2">Chantier propre</h3>
-          <p class="text-gray-500 text-sm">Respect total de votre domicile. Le chantier est systématiquement nettoyé après chaque intervention.</p>
-        </div>
-
-      </div>
-
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M13 0L0 13h9v11L22 11h-9z"/></svg></div>
+      <div class="service-name">Dépannage urgent</div>
+      <div class="service-desc">Panne, court-circuit, disjoncteur qui saute ? J'interviens rapidement pour rétablir votre courant.</div>
     </div>
-  </section>
 
-
-  <!-- ============================================================
-       AVIS CLIENTS
-  ============================================================ -->
-  <section id="avis" class="py-20 px-5 bg-white">
-    <div class="max-w-6xl mx-auto">
-
-      <!-- En-tête -->
-      <div class="text-center mb-14">
-        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">Avis vérifiés Google</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Ils nous font confiance</h2>
-        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Des témoignages réels de clients satisfaits à Toulon et en région PACA.</p>
-        <!-- Score global -->
-        <div class="inline-flex items-center gap-2 mt-6 bg-gray-50 border border-gray-100 rounded-2xl px-6 py-3">
-          <div class="text-yellow-400 text-2xl tracking-tight">★★★★★</div>
-          <span class="text-2xl font-extrabold text-gray-900">5<span class="text-gray-400 text-lg">/5</span></span>
-        </div>
-      </div>
-
-      <!-- Grille de cards -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Sacha -->
-        <div class="flex flex-col bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          <!-- Étoiles -->
-          <div class="flex items-center gap-0.5 mb-4">
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-          </div>
-          <!-- Citation -->
-          <p class="text-gray-600 italic leading-relaxed flex-1 mb-6">
-            "Très professionnel et réactif. Travail propre, efficace, et de très bon conseil pour la suite. Je recommande vivement !"
-          </p>
-          <!-- Auteur -->
-          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">S</div>
-            <div>
-              <p class="font-semibold text-sm text-gray-900">Sacha</p>
-              <p class="text-gray-400 text-xs">Avis Google vérifié</p>
-            </div>
-            <svg class="w-6 h-6 ml-auto shrink-0 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          </div>
-        </div>
-
-        <!-- Jérémy -->
-        <div class="flex flex-col bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          <div class="flex items-center gap-0.5 mb-4">
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-          </div>
-          <p class="text-gray-600 italic leading-relaxed flex-1 mb-6">
-            "Intervention rapide pour une recherche de fuite. Maxime a été très pédagogue, il a pris le temps d'expliquer le problème. Chantier rendu impeccable."
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">J</div>
-            <div>
-              <p class="font-semibold text-sm text-gray-900">Jérémy</p>
-              <p class="text-gray-400 text-xs">Avis Google vérifié</p>
-            </div>
-            <svg class="w-6 h-6 ml-auto shrink-0 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          </div>
-        </div>
-
-        <!-- Marc -->
-        <div class="flex flex-col bg-[#1E40AF] text-white rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-          <div class="flex items-center gap-0.5 mb-4">
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-          </div>
-          <p class="text-white/90 italic leading-relaxed flex-1 mb-6">
-            "Rénovation de ma salle de bain effectuée de A à Z. Le résultat est superbe, les finitions sont soignées. Un vrai artisan de confiance."
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-white/20">
-            <div class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center font-bold text-sm shrink-0">M</div>
-            <div>
-              <p class="font-semibold text-sm text-white">Marc</p>
-              <p class="text-white/55 text-xs">Avis Google vérifié</p>
-            </div>
-            <svg class="w-6 h-6 ml-auto shrink-0 opacity-40" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#fff"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#fff"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#fff"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#fff"/></svg>
-          </div>
-        </div>
-
-        <!-- Marine -->
-        <div class="flex flex-col bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          <div class="flex items-center gap-0.5 mb-4">
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-            <span class="text-yellow-400 text-xl">★</span>
-          </div>
-          <p class="text-gray-600 italic leading-relaxed flex-1 mb-6">
-            "Super rapport qualité/prix. Honnête et ponctuel, ce qui est rare de nos jours. Merci encore pour le dépannage un samedi !"
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-            <div class="w-10 h-10 rounded-full bg-[#1E40AF] text-white flex items-center justify-center font-bold text-sm shrink-0">M</div>
-            <div>
-              <p class="font-semibold text-sm text-gray-900">Marine</p>
-              <p class="text-gray-400 text-xs">Avis Google vérifié</p>
-            </div>
-            <svg class="w-6 h-6 ml-auto shrink-0 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CTA sous les avis -->
-      <div class="mt-10 text-center">
-        <a href="#contact"
-           class="inline-flex items-center gap-2 bg-[#1E40AF] hover:bg-[#1e3a8a] text-white font-semibold px-7 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
-          Rejoindre nos clients satisfaits →
-        </a>
-      </div>
-
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></div>
+      <div class="service-name">Mise en conformité</div>
+      <div class="service-desc">Mise aux normes NF C 15-100, diagnostic électrique, remplacement de tableau vétuste.</div>
     </div>
-  </section>
 
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg></div>
+      <div class="service-name">Éclairage &amp; LED</div>
+      <div class="service-desc">Installation de luminaires, spots encastrés, éclairage extérieur, variateurs. Solutions économiques.</div>
+    </div>
 
-  <!-- ============================================================
-       CONTACT
-  ============================================================ -->
-  <section id="contact" class="py-20 px-5 bg-white">
-    <div class="max-w-6xl mx-auto">
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+      <div class="service-name">Interphonie &amp; Domotique</div>
+      <div class="service-desc">Pose de visiophone, portier électrique, prises RJ45, équipements connectés et automatismes.</div>
+    </div>
 
-      <div class="text-center mb-14">
-        <p class="text-[#1E40AF] font-semibold text-sm uppercase tracking-widest mb-2">On vous répond vite</p>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Contactez-nous</h2>
-        <p class="mt-4 text-gray-500 max-w-lg mx-auto">Remplissez le formulaire ou appelez directement. Devis gratuit, sans engagement.</p>
-      </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+      <div class="service-name">Sécurité électrique</div>
+      <div class="service-desc">Détecteurs de fumée, alarmes, protection différentielle, parafoudre. Sécurité de votre famille.</div>
+    </div>
 
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
+  </div>
+</section>
 
-        <!-- Infos -->
-        <div class="space-y-6">
-
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
-            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">📞</div>
-            <div>
-              <p class="font-semibold text-gray-900 mb-0.5">Téléphone</p>
-              <a href="tel:0772635411" class="text-[#1E40AF] font-bold text-xl hover:underline">07 72 63 54 11</a>
-              <p class="text-gray-400 text-sm mt-0.5">Lundi – Vendredi · 8h – 17h30</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
-            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">📍</div>
-            <div>
-              <p class="font-semibold text-gray-900 mb-0.5">Adresse</p>
-              <p class="text-gray-700 font-medium">14 Bd Dr Charles Barnier</p>
-              <p class="text-gray-400 text-sm">83000 Toulon — Secteur PACA</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
-            <div class="w-12 h-12 bg-[#dbeafe] rounded-xl flex items-center justify-center text-2xl shrink-0">🕐</div>
-            <div>
-              <p class="font-semibold text-gray-900 mb-2">Horaires d'ouverture</p>
-              <div class="space-y-1 text-sm">
-                <div class="flex justify-between gap-6 text-gray-700"><span>Lundi – Vendredi</span><span class="font-semibold">8h00 – 17h30</span></div>
-                <div class="flex justify-between gap-6 text-gray-700"><span>Samedi</span><span class="font-semibold">Sur rendez-vous</span></div>
-                <div class="flex justify-between gap-6 text-gray-400"><span>Dimanche</span><span>Fermé</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Zone -->
-          <div class="bg-[#dbeafe] rounded-2xl p-5">
-            <p class="font-semibold text-[#1E40AF] mb-1">Zone d'intervention</p>
-            <p class="text-gray-600 text-sm">Toulon, La Seyne-sur-Mer, Hyères, La Valette-du-Var, Six-Fours-les-Plages et toute la Métropole Toulon Provence Méditerranée.</p>
-          </div>
-
-        </div>
-
-        <!-- Formulaire -->
-        <form id="contact-form" class="bg-gray-50 rounded-2xl p-8 space-y-5 shadow-sm border border-gray-100">
-          <h3 class="text-xl font-bold text-gray-900">Demande de devis gratuit</h3>
-
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5" for="prenom">Prénom</label>
-              <input id="prenom" name="prenom" type="text" placeholder="Jean" required
-                     class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5" for="nom">Nom</label>
-              <input id="nom" name="nom" type="text" placeholder="Dupont" required
-                     class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
-            </div>
-          </div>
-
+<!-- WHY -->
+<section class="section why" id="pourquoi">
+  <div class="why-inner">
+    <div>
+      <p class="section-label">Pourquoi me choisir</p>
+      <h2 class="section-title">Un pro<br>de confiance</h2>
+      <ul class="why-list">
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="tel">Téléphone</label>
-            <input id="tel" name="tel" type="tel" placeholder="06 XX XX XX XX" required
-                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition" />
+            <div class="why-list-title">Devis 100% gratuit</div>
+            <div class="why-list-desc">Je me déplace pour évaluer vos besoins sans engagement, avec un devis clair et détaillé.</div>
           </div>
-
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="service">Type de prestation</label>
-            <select id="service" name="service"
-                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition appearance-none cursor-pointer">
-              <option value="">Sélectionner un service…</option>
-              <option>Plomberie d'urgence</option>
-              <option>Remplacement de chauffe-eau</option>
-              <option>Rénovation salle de bain</option>
-              <option>Autre</option>
-            </select>
+            <div class="why-list-title">Intervention rapide</div>
+            <div class="why-list-desc">Pour les urgences, je m'efforce d'intervenir le jour même ou le lendemain.</div>
           </div>
-
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="message">Décrivez votre besoin</label>
-            <textarea id="message" name="message" rows="4" placeholder="Ex : fuite sous lavabo, remplacement chauffe-eau 200L, douche à l'italienne…"
-                      class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E40AF] focus:border-transparent bg-white transition resize-none"></textarea>
+            <div class="why-list-title">Travail soigné &amp; garanti</div>
+            <div class="why-list-desc">Chaque installation est réalisée dans les règles de l'art, avec des matériaux de qualité.</div>
           </div>
-
-          <button type="submit"
-                  class="w-full bg-[#1E40AF] hover:bg-[#1e3a8a] text-white font-bold py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
-            Envoyer ma demande
-          </button>
-
-          <p class="text-xs text-gray-400 text-center">Sans engagement · Réponse sous 24h</p>
-        </form>
-
+        </li>
+        <li>
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div>
+            <div class="why-list-title">Tarifs transparents</div>
+            <div class="why-list-desc">Pas de mauvaises surprises : le prix annoncé est le prix facturé, sans frais cachés.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-big-num">10+</div>
+      <div class="why-card">
+        <div class="why-card-val">10+</div>
+        <div class="why-card-label">Années d'expérience</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-val">500+</div>
+        <div class="why-card-label">Chantiers réalisés</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer class="bg-gray-900 text-white pt-14 pb-0">
-    <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-3 gap-10 pb-12">
-
-      <div>
-        <div class="flex items-center gap-2 font-bold text-xl mb-3">
-          <span>🔧</span>
-          <span>Maxime DUMAS <span class="text-[#60a5fa]">Plomberie</span></span>
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">Artisan plombier indépendant à Toulon. Sérieux, réactivité et qualité depuis des années.</p>
-      </div>
-
-      <div>
-        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3 font-semibold">Nos services</p>
-        <ul class="space-y-2 text-sm text-gray-300">
-          <li><a href="#services" class="hover:text-white transition-colors">Plomberie d'urgence</a></li>
-          <li><a href="#services" class="hover:text-white transition-colors">Remplacement chauffe-eau</a></li>
-          <li><a href="#services" class="hover:text-white transition-colors">Rénovation salle de bain</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3 font-semibold">Contact</p>
-        <ul class="space-y-2 text-sm text-gray-300">
-          <li><a href="tel:0772635411" class="text-[#60a5fa] hover:text-blue-300 transition-colors font-semibold">📞 07 72 63 54 11</a></li>
-          <li>📍 14 Bd Dr Charles Barnier, 83000 Toulon</li>
-          <li>🕐 Lun–Ven · 8h – 17h30</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="border-t border-gray-800 py-4 px-5">
-      <p class="text-center text-xs text-gray-500">© 2025 Maxime DUMAS Plomberie &amp; Rénovation — Toulon. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-
-  <!-- ============================================================
-       FLOATING CALL BUTTON
-  ============================================================ -->
-  <a href="tel:0772635411"
-     class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#1E40AF] hover:bg-[#1e3a8a] text-white rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-110 transition-all pulse-ring"
-     aria-label="Appeler Maxime DUMAS Plomberie">
-    📞
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-title">
+    <span>Besoin d'un</span>
+    <span>électricien ?</span>
+  </div>
+  <a href="tel:0643954746" class="cta-tel-btn">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    06 43 95 47 46
   </a>
+</div>
 
-
-  <!-- ============================================================
-       JS
-  ============================================================ -->
-  <script>
-    // Mobile menu
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    burger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-    // Contact form (static demo — shows a success message)
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      this.innerHTML = `
-        <div class="text-center py-12">
-          <div class="text-5xl mb-4">✅</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Demande envoyée !</h3>
-          <p class="text-gray-500">Maxime DUMAS vous recontactera dans les plus brefs délais.<br/>Vous pouvez aussi l'appeler directement au <a href="tel:0772635411" class="text-[#1E40AF] font-bold hover:underline">07 72 63 54 11</a>.</p>
-        </div>`;
-    });
-  </script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Diop Christophe</div>
+  <div class="footer-meta">
+    Artisan Électricien · Île-de-France<br>
+    <span style="color:rgba(136,136,136,0.5); font-size:12px;">© 2024 Tous droits réservés</span>
+  </div>
+  <div class="footer-tel"><a href="tel:0643954746">06 43 95 47 46</a></div>
+</footer>
 
 </body>
 </html>
